@@ -1,10 +1,13 @@
 const mongoose = require('mongoose'),
+ uniqueValidator = require('mongoose-unique-validator');
       Schema = mongoose.Schema;
       
 const Deployment = new Schema({
     AppName:{
         type:String,
-        required:true
+        required:true,
+        unique:true
+       // index: true
     },
     Feature:{
         type:Number,
@@ -59,7 +62,7 @@ const Deployment = new Schema({
         required: true
     }
 })
+Deployment.plugin(uniqueValidator);
+const deployments = mongoose.model('deployments',Deployment);
 
-let deployments = mongoose.model('deployments',Deployment);
-
-module.exports = deployments;
+module.exports = {deployments};
