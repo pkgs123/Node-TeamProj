@@ -5,4 +5,6 @@ const config = require('../../config'),
 module.exports = (app) =>{
     app.get(`${rootPath}/getDeployments`,controller.getDeployments);
     app.post(`${rootPath}/postDeployment`,controller.postDeployment);
+    app.put(`${rootPath}/updateDeploymentRecord`,controller.updateDeploymentRecord);
+    app.delete(`${rootPath}/deleteDeploymentRecord`,controller.deleteDeploymentRecord);
 }

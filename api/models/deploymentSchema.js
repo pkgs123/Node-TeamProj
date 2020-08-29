@@ -6,12 +6,11 @@ const Deployment = new Schema({
     AppName:{
         type:String,
         required:true,
-        unique:true
-       // index: true
     },
     Feature:{
         type:Number,
-        required:true
+        required:true,
+        unique:true
     },
     FeatureStatus:{
         type: String,
@@ -51,7 +50,7 @@ const Deployment = new Schema({
     },
     NatureOfChange:{
         type: String,
-        required: true
+       // required: true
     },
     UiArtifacts:{
         type: Number,
@@ -60,6 +59,10 @@ const Deployment = new Schema({
     ApiArtifacts:{
         type: Number,
         required: true
+    },
+    UID:{
+        type: String,
+        required:true
     }
 })
 Deployment.plugin(uniqueValidator);

@@ -16,12 +16,12 @@ exports.getDeployments = (req, res) => {
 }
 
 exports.postDeployment = (req, res) => {
-    let uuid = uuidV1();
+   
     const payload = req.body;
 
     if (payload) {
         let uuid = uuidV1();
-        payload.uuid = uuid;
+        payload.UID = uuid;
 
         let deplomentPostObj = deploymentModel.deployments(payload);
         deplomentPostObj.save()
@@ -35,4 +35,28 @@ exports.postDeployment = (req, res) => {
             })
     }
 
+}
+
+exports.updateDeploymentRecord = (req,res) =>{
+
+    const data = req.body;
+  
+    deploymentModel.deployments.updateOne({UID:req.body.UID},{$set:data})
+    .then((response)=>{
+        res.status(200).send('Data Updated Successfully!!!');
+    })
+    .catch((error)=>{
+        res.status(400).send('Errro',error);
+    })
+}
+
+exports.deleteDeploymentRecord = (req,res) =>{
+    const data = req.body;
+    deploymentModel.deployments.deleteOne({UID:req.body.UID},{$set:data})
+    .then((response)=>{
+        res.status(200).send('Data Deleted Successfully')
+    })
+    .catch((error)=>{
+        res.status(400).send(`Sorry Something wrong!!!${errro}`);
+    })
 }
