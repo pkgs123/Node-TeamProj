@@ -77,23 +77,23 @@ exports.signout =(req ,res)=>{
     })
 }
 
-// //protected routes
-// exports.isSignedIn = expressJwt({
-//     secret : "Pappqw!@#2592" , //process.env.SECRET,
-//     userProperty : "auth"
-// })
+//protected routes
+exports.isSignedIn = expressJwt({
+    secret : "Pappqw!@#2592" , //process.env.SECRET,
+    userProperty : "auth"
+})
 
 
-// // custom middleware
-// exports.isAuthenticated = (req,res , next)=>{
-//     let checker = req.profile && req.auth && req.profile._id==req.auth._id;
-//     if(!checker){
-//         return res.status(403).json({
-//             error : "Access Denied"
-//         })
-//     }
-//     next();
-// }
+// custom middleware
+exports.isAuthenticated = (req,res , next)=>{
+    let checker = req.profile && req.auth && req.profile._id==req.auth._id;
+    if(!checker){
+        return res.status(403).json({
+            error : "Access Denied"
+        })
+    }
+    next();
+}
 
 // exports.isAdmin=(req,res , next)=>{
 //     let checker = req.profile.role ===1;
