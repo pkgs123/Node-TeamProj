@@ -25,4 +25,5 @@ module.exports = (app) => {
     app.post(`${rootPath}/postDeployment`, controller.postDeployment);
     app.put(`${rootPath}/updateDeploymentRecord`, controller.updateDeploymentRecord);
     app.delete(`${rootPath}/deleteDeploymentRecord`, controller.deleteDeploymentRecord);
+
 }
