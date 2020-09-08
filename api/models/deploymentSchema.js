@@ -8,7 +8,8 @@ const Deployment = new Schema({
         required:true,
     },
     AppGroup:{
-        type:String
+        type:String,
+        required: true
     },
     Feature:{
         type:Number,
@@ -53,7 +54,7 @@ const Deployment = new Schema({
     },
     NatureOfChange:{
         type: String,
-       // required: true
+       required: true
     },
     UiArtifacts:{
         type: Number,
@@ -64,7 +65,8 @@ const Deployment = new Schema({
         required: true
     },
     DevId:{
-        type: String
+        type: String,
+        required: true
     },
     UID:{
         type: String,

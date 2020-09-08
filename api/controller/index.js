@@ -17,22 +17,43 @@ exports.getDeployments = (req, res) => {
 
 exports.postDeployment = (req, res) => {
    
-    const payload = req.body;
+    let payload = req.body;
 
     if (payload) {
         let uuid = uuidV1();
-        payload.UID = uuid;
+        if(payload.length > 0){
+        payload.map((data)=>{
+            let uuid = uuidV1();
+                data.UID = uuid;
+            })
+        }
+        else{
+            payload.UID = uuid;
+        }
+        
 
         let deplomentPostObj = deploymentModel.deployments(payload);
-        deplomentPostObj.save()
-            .then((response) => {
-                res.status(201).send('Data Created Successfully!!!');
-                console.log('Data Created Successfully!!!');
-            })
-            .catch((err)=>{
+
+        deploymentModel.deployments.insertMany(payload,(err, docs)=>{
+            if (err){ 
                 console.log("error",err);
                 res.status(400).send(err);
-            })
+            
+            } else {
+              console.log("Multiple documents inserted to Collection");
+              res.status(201).send('Data Created Successfully!!!');
+              console.log('Data Created Successfully!!!');
+            }
+        })
+        // deplomentPostObj.save()
+        //     .then((response) => {
+        //         res.status(201).send('Data Created Successfully!!!');
+        //         console.log('Data Created Successfully!!!');
+        //     })
+        //     .catch((err)=>{
+        //         console.log("error",err);
+        //         res.status(400).send(err);
+        //     })
     }
 
 }
