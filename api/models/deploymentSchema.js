@@ -7,6 +7,9 @@ const Deployment = new Schema({
         type:String,
         required:true,
     },
+    AppGroup:{
+        type:String
+    },
     Feature:{
         type:Number,
         required:true,
@@ -59,6 +62,9 @@ const Deployment = new Schema({
     ApiArtifacts:{
         type: Number,
         required: true
+    },
+    DevId:{
+        type: String
     },
     UID:{
         type: String,
